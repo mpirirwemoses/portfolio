@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import image56 from "../assets/images/pexels-ekoagalarov-14865728.jpg"
 import {useState} from "react"
 import Card from "./Card"
@@ -16,6 +17,7 @@ import image66 from "../assets/images/DALL·E 2025-02-01 10.15.49 - A modern and
 import image67 from "../assets/images/developer_setup_grayscale.png"
 import image68 from "../assets/images/StockCake-Futuristic Visionary Fashion_1725943062.jpg"
 import RotatingNumber from "./Rotate";
+import SocialIcons from "./Social";
 const Port = () => {
     const [count, setCount] = useState(0);
     const [desiredNumber, setDesiredNumber] = useState(null);
@@ -93,8 +95,8 @@ const Port = () => {
                 <li><a href="#about" className="hover:underline px-3 hover:bg-blue-500 py-2 italic rounded text-2xl">About</a></li>
                 <li><a href="#projects" className="hover:underline hover:bg-blue-500 px-3 py-2 italic rounded text-2xl">Projects</a></li>
                 <li><a href="#contact" className="hover:underline hover:bg-blue-500 px-3 py-2 italic rounded text-2xl">Contact</a></li>
-                <li><a href="#contact" className="hover:underline hover:bg-blue-500 px-3 py-2 italic rounded text-2xl">Experience</a></li>
-                <li><button className="px-4 py-2 border border-transparent hover:bg-purple-400 hover:text-black hover:border-blue-500 rounded-full bg-purple-700 text-white text-lg">Hire Me</button></li>
+                <li><a href="#experience" className="hover:underline hover:bg-blue-500 px-3 py-2 italic rounded text-2xl">Experience</a></li>
+            <Link path to= "/contact" >   <li><button className="px-4 py-2 border sm:px-2 sm:text-md  border-transparent hover:bg-purple-400 hover:text-black hover:border-blue-500 rounded-full bg-purple-700 text-white text-lg">Hire Me</button></li></Link>
               </ul>
             </nav>
           </div>
@@ -537,51 +539,7 @@ const Port = () => {
   <hr className ="w-1/2 bg-black mx-auto"/>
   <p className="text-black my-8 text-center">Feel free to reach out to me through any of the platforms below:</p>
 
-  <div className="flex justify-center gap-16">
-    {/* Facebook Icon */}
-    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-12 h-12 text-blue-600">
-        <path d="M22 12a10 10 0 1 0-11.64 9.85v-6.97H8.1v-2.88h2.26V9.76c0-2.22 1.32-3.44 3.33-3.44.97 0 1.98.17 1.98.17v2.18h-1.12c-1.1 0-1.45.68-1.45 1.37v1.65h2.49l-.4 2.88h-2.1v6.97A10 10 0 0 0 22 12Z" />
-      </svg>
-    </a>
-    {/* Twitter Icon */}
-    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-12 h-12 text-sky-500">
-        <path d="M19.46 7.42c.01.15.01.3.01.46 0 4.7-3.57 10.11-10.11 10.11A10.07 10.07 0 0 1 2 15.59a7.19 7.19 0 0 0 5.29-1.48 3.58 3.58 0 0 1-3.34-2.48c.55.1 1.1.1 1.66-.06a3.57 3.57 0 0 1-2.86-3.5v-.05c.48.27 1.04.43 1.63.45a3.57 3.57 0 0 1-1.1-4.77 10.15 10.15 0 0 0 7.36 3.73 3.57 3.57 0 0 1 6.08-3.26 7.12 7.12 0 0 0 2.27-.87 3.58 3.58 0 0 1-1.57 1.97 7.13 7.13 0 0 0 2.05-.56 7.65 7.65 0 0 1-1.78 1.84Z" />
-      </svg>
-    </a>
-    {/* X (formerly Twitter) Icon */}
-    <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-12 h-12 text-black">
-        <path d="M17.32 3H21L13.76 12.04 21 21h-3.68l-4.44-5.09L8.47 21H3l7.5-8.64L3 3h4.61l4.4 5.09L17.32 3Z" />
-      </svg>
-    </a>
-    {/* Instagram Icon */}
-    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-12 h-12 text-pink-500">
-        <path d="M16.98 2H7.02A5.02 5.02 0 0 0 2 7.02v9.96A5.02 5.02 0 0 0 7.02 22h9.96A5.02 5.02 0 0 0 22 16.98V7.02A5.02 5.02 0 0 0 16.98 2ZM20 16.98A3.02 3.02 0 0 1 16.98 20H7.02A3.02 3.02 0 0 1 4 16.98V7.02A3.02 3.02 0 0 1 7.02 4h9.96A3.02 3.02 0 0 1 20 7.02v9.96ZM17 7a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z" />
-      </svg>
-    </a>
-    {/* WhatsApp Icon */}
-    <a href="https://wa.me/your-number" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-12 h-12 text-green-500">
-        <path d="M12 2A10 10 0 0 0 2 12a9.93 9.93 0 0 0 1.45 5.19L2 22l4.92-1.3A9.93 9.93 0 0 0 12 22a10 10 0 0 0 0-20Zm5.3 14.46c-.22.63-1.26 1.16-1.76 1.23a3.08 3.08 0 0 1-1.45-.1 13.56 13.56 0 0 1-5.48-3.66 5.73 5.73 0 0 1-1.64-3.5 3.2 3.2 0 0 1 .94-2.32 1.13 1.13 0 0 1 .83-.37c.2 0 .4.01.57.02.19.01.44-.07.68.52.26.65.88 2.25.96 2.42.08.17.14.37.03.6-.1.23-.15.37-.3.57-.15.2-.3.44-.43.58-.15.15-.3.32-.13.6.17.27.73 1.21 1.56 1.95 1.07.96 1.97 1.26 2.24 1.4.28.13.45.12.62-.08.17-.2.71-.8.9-1.08.17-.27.37-.23.62-.14.27.1 1.39.66 1.63.78.24.12.41.18.47.27.07.08.07.46-.15 1.1Z" />
-      </svg>
-    </a>
-    {/* Contact Icon */}
-    <a href="mailto:your-email@example.com" target="_blank" rel="noopener noreferrer" className="hover:scale-105 transition-transform">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-12 h-12 text-blue-500">
-        <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm-1.4 2L12 11.8 5.4 6h13.2ZM4 18v-9l7.67 6a1 1 0 0 0 1.26 0L20 9v9H4Z" />
-      </svg>
-    </a>
-    <a href="tel:+256909845377" onClick = {()=>{handleCopy()}} className="hover:scale-110  transition-transform flex items-center gap-2">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-green-800">
-  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.11 19.56 19.56 0 0 1-6-6A19.86 19.86 0 0 1 3.08 4.18 2 2 0 0 1 5 2h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .69 2.81 2 2 0 0 1-.45 2.11L9.03 9.03a16 16 0 0 0 6 6l1.39-1.39a2 2 0 0 1 2.11-.45 12.05 12.05 0 0 0 2.81.69A2 2 0 0 1 22 16.92z" />
-</svg>
-
-      <span onClick = {()=>{handleCopy()}} className="text-lg text-gray-600">+256909845377</span>
-    </a>
-  </div>
+  <div className=""><SocialIcons/></div>
 </section>
 
        
