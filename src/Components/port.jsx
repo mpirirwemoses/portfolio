@@ -1,13 +1,52 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import image56 from "../assets/images/pexels-ekoagalarov-14865728.jpg";
+import SkillItem from "./Skill";
 import Card from "./Card";
 import Exprience from "./Exprience";
 import ProjectCard from "./Project";
 import { ChevronLeft, X, Star, ChevronRight, Sun, Moon, MessageCircle, Image as ImageIcon, Send } from 'lucide-react';
 import { Mail, Linkedin, Github, Briefcase } from "lucide-react";
-import image60 from "../assets/images/icons8-java-144.png";
+
+// Auto-generated imports for all images in the images folder
+
+// ...existing code...
+// Auto-generated imports for all images in the images folder
+
+import imageScreenshot13 from "../assets/images/Screenshot (13).png";
+import imageScreenshot9 from "../assets/images/Screenshot (9).png";
+import imageScreenshot16 from "../assets/images/Screenshot (16).png";
+import imageScreenshot17 from "../assets/images/Screenshot (17).png";
+import imageScreenshot47 from "../assets/images/Screenshot (47).png";
+import imageScreenshot41 from "../assets/images/Screenshot (41).png";
+import imageScreenshot39 from "../assets/images/Screenshot (39).png";
+import imageScreenshot26 from "../assets/images/Screenshot (26).png";
+
+import imageScreenshot51 from "../assets/images/Screenshot (51).png";
+import imageScreenshot52 from "../assets/images/Screenshot (52).png";
+
+
+import imageScreenshot73 from "../assets/images/Screenshot (73).png";
+import imageScreenshot74 from "../assets/images/Screenshot (74).png";
+import imageScreenshot76 from "../assets/images/Screenshot (76).png";
+import imageScreenshot80 from "../assets/images/Screenshot (80).png";
+import imageScreenshot82 from "../assets/images/Screenshot (82).png";
+import imageScreenshot83 from "../assets/images/Screenshot (83).png";
+import imageScreenshot85 from "../assets/images/Screenshot (85).png";
+import imageScreenshot87 from "../assets/images/Screenshot (87).png";
+import imageScreenshot90 from "../assets/images/Screenshot (90).png";
+import imageScreenshot100 from "../assets/images/Screenshot (100).png";
+import imageScreenshot102 from "../assets/images/Screenshot (102).png";
+import imageScreenshot103 from "../assets/images/Screenshot (103).png";
+import imageScreenshot105 from "../assets/images/Screenshot (105).png";
+import imageScreenshot104 from "../assets/images/Screenshot (104).png";
+import imageScreenshot106 from "../assets/images/Screenshot (106).png";
+import imageScreenshot107 from "../assets/images/Screenshot (107).png";
+import imageScreenshot108 from "../assets/images/Screenshot (108).png";
+import imageScreenshot8 from "../assets/images/Screenshot (8).png";
+import image56 from "../assets/images/pexels-rachel-claire-4577716.jpg";
+import image94 from "../assets/images/ChatGPT Image Aug 4, 2025, 07_45_40 PM.png";
+import image60 from "../assets/images/icons8-python-96.png";
 import image61 from "../assets/images/icons8-javascript-144.png";
 import image62 from "../assets/images/icons8-figma-96.png";
 import image63 from "../assets/images/icons8-content-100.png";
@@ -15,7 +54,31 @@ import image64 from "../assets/images/icons8-node-js-144.png";
 import image65 from "../assets/images/icons8-react-native-256.png";
 import image66 from "../assets/images/DALL·E 2025-02-01 10.15.49 - A modern and visually stunning e-commerce website cover. The image should feature an elegant online shopping theme with a sleek laptop or smartphone d.webp";
 import image67 from "../assets/images/developer_setup_grayscale.png";
-import image68 from "../assets/images/StockCake-Futuristic Visionary Fashion_1725943062.jpg";
+import image68 from "../assets/images/pexels-sora-shimazaki-5935794.jpg";
+import image90 from "../assets/images/ChatGPT Image Aug 4, 2025, 07_49_45 PM.png";
+import image91 from "../assets/images/ChatGPT Image Aug 6, 2025, 09_25_54 AM.png";
+import image92 from "../assets/images/pexels-ketut-subiyanto-4353618.jpg";
+import image93 from "../assets/images/icons8-django-100.png";
+ import image99 from "../assets/images/icons8-docker-96.png"; // Removed duplicate
+import image95 from "../assets/images/icons8-react-native-96.png";
+import image96 from "../assets/images/icons8-person-96.png";
+import image97 from "../assets/images/icons8-git-128.png";
+import image98 from "../assets/images/ChatGPT Image Aug 5, 2025, 09_17_23 AM.png"; // Removed duplicate
+
+
+// ...existing code...
+
+// Mapping of GitHub repo names to unique images
+const githubProjectImages = {
+  "modernE-commerce": image66,
+  "point-of-sale-and-supermarket-management": image94,
+  "Professionaldating-WeAAfrica": image90,
+  "FarmaHub": image91,
+  "agric_predictor": image98,
+  "modern_reusable_chat": image92,
+  // Add more mappings as needed
+};
+const defaultProjectImage = image63;
 import RotatingNumber from "./Rotate";
 import SocialIcons from "./Social";
 import Navbar from "./Navbar";
@@ -33,6 +96,15 @@ const Port = () => {
         { id: 2, totalStars: 4 }, // Second div with 2 stars
         { id: 3, totalStars: 3 }, // Third div with 5 stars
       ];
+      const handleDownload = () => {
+  // Assuming moses.pdf is in your public folder
+  const link = document.createElement('a');
+  link.href = '/MosesMpirirwe_Resume.pdf';
+  link.download = 'MosesMpirirwe_CV.pdf'; // This will be the filename when downloaded
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 
     const handleCardClick =()=>{
         console.log("clicked")
@@ -52,22 +124,41 @@ const Port = () => {
     const [loadingProjects, setLoadingProjects] = useState(true);
     const [errorProjects, setErrorProjects] = useState(null);
 
-    useEffect(() => {
-      setLoadingProjects(true);
-      fetch('https://api.github.com/users/mpirirwemoses/repos?sort=updated&per_page=6')
+   useEffect(() => {
+  setLoadingProjects(true);
+
+  const repoNames = [
+    "modernE-commerce",
+    "Farmahub",
+    "modern_reusable_chat",
+    "agric_predictor",
+    "point-of-sale-and-supermarket-management",
+    "Professionaldating-WeAAfrica"
+  ];
+
+  Promise.all(
+    repoNames.map(name =>
+    fetch(`https://api.github.com/repos/mpirirwemoses/${name}`, {
+      headers: {
+        Authorization: `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`
+      }
+    })
         .then((res) => {
-          if (!res.ok) throw new Error('Failed to fetch GitHub projects');
+          if (!res.ok) throw new Error(`Failed to fetch ${name}`);
           return res.json();
         })
-        .then((data) => {
-          setGithubProjects(data);
-          setLoadingProjects(false);
-        })
-        .catch((err) => {
-          setErrorProjects(err.message);
-          setLoadingProjects(false);
-        });
-    }, []);
+    )
+  )
+    .then((data) => {
+      setGithubProjects(data);
+      setLoadingProjects(false);
+    })
+    .catch((err) => {
+      setErrorProjects(err.message);
+      setLoadingProjects(false);
+    });
+}, []);
+
 
     useEffect(() => {
       if (location.hash) {
@@ -95,14 +186,7 @@ const Port = () => {
         type: "Article",
         image: image62,
       },
-      {
-        id: 3,
-        title: "My YouTube Channel",
-        description: "Tutorials and tech content for aspiring developers.",
-        url: "https://youtube.com/yourchannel",
-        type: "Video",
-        image: image63,
-      },
+     
     ];
     const [selectedTab, setSelectedTab] = useState("apps");
     const [screenshotModal, setScreenshotModal] = useState({ isOpen: false, project: null });
@@ -110,77 +194,44 @@ const Port = () => {
     const [loadingScreenshots, setLoadingScreenshots] = useState(false);
 
     // Organized screenshot images for projects - each project has its own screenshots
-    const projectScreenshots = {
-      // GitHub projects screenshots
-      "portfolio": [
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop"
-      ],
-      "ecommerce-app": [
-        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop"
-      ],
-      "blog-platform": [
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop"
-      ],
-      "task-manager": [
-        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
-      ],
-      "weather-app": [
-        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop"
-      ],
-      "chat-application": [
-        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop"
-      ],
-      // Content projects screenshots
-      "portfolio-guide": [
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop"
-      ],
-      "uiux-tips": [
-        "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop"
-      ],
-      "youtube-channel": [
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop"
-      ]
-    };
+    // Screenshots for each project using local images for better performance and branding
+ // ...existing code...
+const projectScreenshots = {
+  "moderne-commerce": [imageScreenshot73, imageScreenshot74, imageScreenshot76, imageScreenshot80, imageScreenshot100, imageScreenshot102],
+  "farmahub": [imageScreenshot82, imageScreenshot83, imageScreenshot85, imageScreenshot87, imageScreenshot100, imageScreenshot102],
+  "modern-reusable-chat": [imageScreenshot106, imageScreenshot107, imageScreenshot108],
+  "agric-predictor": [imageScreenshot103, imageScreenshot104, imageScreenshot105],
+  "point-of-sale-and-supermarket-management": [imageScreenshot8, imageScreenshot9, imageScreenshot13, imageScreenshot16, imageScreenshot17],
+  "professionaldating-weaafrica": [imageScreenshot39, imageScreenshot41, imageScreenshot47, imageScreenshot51, imageScreenshot52],
+  "portfolio-guide": [imageScreenshot47],
+  "uiux-tips": [imageScreenshot47, imageScreenshot47],
+  "youtube-channel": [imageScreenshot51, imageScreenshot52],
+  "general": [imageScreenshot47]
+};
+// ...existing code...
 
-    // Function to get screenshots for a specific project
-    const getProjectScreenshots = (project) => {
-      const projectKey = project.name || project.title;
-      const normalizedKey = projectKey.toLowerCase().replace(/[^a-z0-9]/g, '-');
-      
-      // Try to find exact match first
-      if (projectScreenshots[normalizedKey]) {
-        return projectScreenshots[normalizedKey];
-      }
-      
-      // Try to find partial match
-      const matchingKey = Object.keys(projectScreenshots).find(key => 
-        normalizedKey.includes(key) || key.includes(normalizedKey)
-      );
-      
-      if (matchingKey) {
-        return projectScreenshots[matchingKey];
-      }
-      
-      // Fallback to default screenshots
-      return [
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop"
-      ];
-    };
+const getProjectScreenshots = (project) => {
+  const projectKey = project.name || project.title;
+  const normalizedKey = projectKey.toLowerCase().replace(/[^a-z0-9]/g, '-');
+
+  if (projectScreenshots[normalizedKey]) {
+    return projectScreenshots[normalizedKey];
+  }
+
+  const matchingKey = Object.keys(projectScreenshots).find(key =>
+    normalizedKey.includes(key) || key.includes(normalizedKey)
+  );
+
+  if (matchingKey) {
+    return projectScreenshots[matchingKey];
+  }
+
+  return [
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop"
+  ];
+};
 
     const handleScreenshotClick = (project) => {
       setLoadingScreenshots(true);
@@ -239,74 +290,120 @@ const Port = () => {
             <>
               {loadingProjects && <p className="text-center text-lg text-gray-400 col-span-2">Loading projects...</p>}
               {errorProjects && <p className="text-center text-lg text-red-400 col-span-2">{errorProjects}</p>}
-              {githubProjects && githubProjects.length > 0 && githubProjects.map((repo, index) => (
-                <motion.div
-                  key={repo.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative flex flex-col items-center bg-purple-900 rounded-xl shadow-lg p-8 overflow-hidden hover:shadow-[0_0_20px_5px_rgba(128,0,255,0.8)] transition-shadow duration-300"
-                >
-                  <img src={image63} alt="Project" className="w-20 h-20 rounded-full mb-4 object-cover" />
-                  <h2 className="absolute top-10 z-10 text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-400 to-red-400 drop-shadow-lg font-[Poppins]">
-                    {repo.name}
-                  </h2>
-                  <div className="flex flex-col items-center mt-16">
-                    <p className="text-white text-lg mb-2 text-center">{repo.description}</p>
-                    <div className="flex gap-4 mt-2">
-                      <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold">{repo.language}</span>
-                      <span className="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold">★ {repo.stargazers_count}</span>
-                    </div>
-                    <div className="flex gap-4 mt-4 flex-wrap justify-center">
-                      <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full text-white font-bold hover:scale-105 transition">GitHub</a>
-                      {repo.homepage && <a href={repo.homepage} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full text-white font-bold hover:scale-105 transition">Live Demo</a>}
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => handleScreenshotClick(repo)}
-                        className="px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-full text-white font-bold hover:shadow-lg transition flex items-center gap-2"
-                      >
-                        <ImageIcon className="w-4 h-4" />
-                        Screenshots
-                      </motion.button>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </>
-          ) : (
-            <>
-              {contentProjects.map((content, index) => (
-                <motion.div
-                  key={content.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative flex flex-col items-center bg-purple-900 rounded-xl shadow-lg p-8 overflow-hidden hover:shadow-[0_0_20px_5px_rgba(128,0,255,0.8)] transition-shadow duration-300"
-                >
-                  <img src={content.image} alt={content.title} className="w-20 h-20 rounded-full mb-4 object-cover" />
-                  <h2 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-400 to-red-400 drop-shadow-lg font-[Poppins] mb-2">
-                    {content.title}
-                  </h2>
-                  <p className="text-white text-lg mb-2 text-center">{content.description}</p>
-                  <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold mb-2">{content.type}</span>
-                  <div className="flex gap-4 flex-wrap justify-center">
-                    <a href={content.url} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full text-white font-bold hover:scale-105 transition">View</a>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => handleScreenshotClick(content)}
-                      className="px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-full text-white font-bold hover:shadow-lg transition flex items-center gap-2"
-                    >
-                      <ImageIcon className="w-4 h-4" />
-                      Screenshots
-                    </motion.button>
-                  </div>
-                </motion.div>
-              ))}
-            </>
-          )}
+                 {githubProjects && githubProjects.length > 0 && githubProjects.map((repo, index) => (
+      <motion.div
+        key={repo.id}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        className="relative flex flex-col items-center bg-purple-900 rounded-xl shadow-lg overflow-hidden hover:shadow-[0_0_20px_5px_rgba(128,0,255,0.8)] transition-shadow duration-300"
+      >
+        {/* Full-width image container */}
+        <div className="w-full h-48 relative overflow-hidden">
+          <img
+            src={githubProjectImages[repo.name] || defaultProjectImage}
+            alt={repo.name}
+            className="w-full h-full object-cover absolute inset-0"
+            onError={(e) => {
+              e.target.src = defaultProjectImage;
+            }}
+          />
+          {/* Project name overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-purple-900/90 to-transparent flex items-end p-4">
+            <h2 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-400 to-red-400 drop-shadow-lg font-[Poppins]">
+              {repo.name}
+            </h2>
+          </div>
         </div>
+        
+        <div className="p-6 w-full">
+          <p className="text-white/90 text-lg font-medium mb-6 text-center font-[Inter] leading-relaxed tracking-wide transition-all duration-300 hover:text-white hover:scale-[1.01]">
+  {repo.description || (
+    <span className="opacity-70 italic">No description available</span>
+  )}
+</p>
+          
+          <div className="flex gap-4 mt-4 flex-wrap justify-center">
+            <a 
+              href={repo.html_url} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full text-white font-bold hover:scale-105 transition"
+            >
+              GitHub
+            </a>
+            {repo.homepage && (
+              <a 
+                href={repo.homepage} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full text-white font-bold hover:scale-105 transition"
+              >
+                Live Demo
+              </a>
+            )}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => handleScreenshotClick(repo)}
+              className="px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-full text-white font-bold hover:shadow-lg transition flex items-center gap-2"
+            >
+              <ImageIcon className="w-4 h-4" />
+              Screenshots
+            </motion.button>
+          </div>
+        </div>
+      </motion.div>
+    ))}
+  </>
+) : (
+  <>
+    {contentProjects.map((content, index) => (
+      <motion.div
+        key={content.id}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        className="relative flex flex-col items-center bg-purple-900 rounded-xl shadow-lg p-8 overflow-hidden hover:shadow-[0_0_20px_5px_rgba(128,0,255,0.8)] transition-shadow duration-300"
+      >
+        <img 
+          src={content.image} 
+          alt={content.title} 
+          className="w-20 h-20 rounded-full mb-4 object-cover" 
+        />
+        <h2 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-400 to-red-400 drop-shadow-lg font-[Poppins] mb-2">
+          {content.title}
+        </h2>
+        <p className="text-white text-lg mb-2 text-center">{content.description}</p>
+        <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold mb-2">
+          {content.type}
+        </span>
+        <div className="flex gap-4 flex-wrap justify-center">
+          <a 
+            href={content.url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full text-white font-bold hover:scale-105 transition"
+          >
+            View
+          </a>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => handleScreenshotClick(content)}
+            className="px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-full text-white font-bold hover:shadow-lg transition flex items-center gap-2"
+          >
+            <ImageIcon className="w-4 h-4" />
+            Screenshots
+          </motion.button>
+        </div>
+      </motion.div>
+    ))}
+  </>
+  )}
+  </div>
+
+
 
         {/* Screenshot Modal */}
         <AnimatePresence>
@@ -374,40 +471,50 @@ const Port = () => {
                   ) : (
                     <>
                       {getProjectScreenshots(screenshotModal.project).length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                          {getProjectScreenshots(screenshotModal.project).map((screenshot, index) => (
-                            <motion.div
-                              key={index}
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: index * 0.1 }}
-                              className="group cursor-pointer bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
-                            >
-                              <div className="relative overflow-hidden">
-                                <motion.img
-                                  whileHover={{ scale: 1.1 }}
-                                  transition={{ duration: 0.3 }}
-                                  src={screenshot}
-                                  alt={`${screenshotModal.project?.name || screenshotModal.project?.title} Screenshot ${index + 1}`}
-                                  className="w-full h-64 object-cover cursor-pointer"
-                                  onClick={() => handleScreenshotPreview(screenshot)}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                <div className="absolute top-2 right-2 bg-black/50 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                  Click to enlarge
-                                </div>
-                              </div>
-                              <div className="p-4">
-                                <p className="text-center text-sm text-gray-700 font-medium">
-                                  Screenshot {index + 1}
-                                </p>
-                                <p className="text-center text-xs text-gray-500 mt-1">
-                                  Click to view full size
-                                </p>
-                              </div>
-                            </motion.div>
-                          ))}
-                        </div>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {getProjectScreenshots(screenshotModal.project).map((screenshot, index) => (
+      <motion.div
+        key={index}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.1 }}
+        className="group cursor-pointer bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+      >
+        <div className="relative overflow-hidden">
+          <motion.img
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.3 }}
+            src={screenshot}
+            alt={`${screenshotModal.project?.name || screenshotModal.project?.title} Screenshot ${index + 1}`}
+            className="w-full h-64 object-cover cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedScreenshot(screenshot);
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <button
+            className="absolute top-2 right-2 bg-black/50 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedScreenshot(screenshot);
+            }}
+          >
+            Click to enlarge
+          </button>
+        </div>
+        <div className="p-4">
+          <p className="text-center text-sm text-gray-700 font-medium">
+            Screenshot {index + 1}
+          </p>
+          <p className="text-center text-xs text-gray-500 mt-1">
+            Click to view full size
+          </p>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+                        
                       ) : (
                         <div className="text-center py-12">
                           <div className="w-24 h-24 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
@@ -448,7 +555,7 @@ const Port = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 bg-black/90 backdrop-blur-sm z-[60] flex items-center justify-center p-4"
-              onClick={closeScreenshotPreview}
+              onClick={() => setSelectedScreenshot(null)}
             >
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
@@ -461,7 +568,7 @@ const Port = () => {
                 <motion.button
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
-                  onClick={closeScreenshotPreview}
+                  onClick={() => setSelectedScreenshot(null)}
                   className="absolute top-4 right-4 z-10 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
                 >
                   <X className="w-6 h-6" />
@@ -520,14 +627,8 @@ const Port = () => {
     </section>
   );
 
-  // GITHUB PROJECTS (placeholder for now)
-  // Will fetch and display GitHub projects dynamically in the next step
-  // const [githubProjects, setGithubProjects] = useState([]);
-  // useEffect(() => {
-  //   // Placeholder: will implement GitHub API fetch in next step
-  // }, []);
-
-  const cards = 6; // Number of testimonial cards
+  // TESTIMONIALS SECTION
+  const cards = 4; // Number of testimonial cards
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % cards);
   };
@@ -537,18 +638,59 @@ const Port = () => {
     );
   };
 
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [success, setSuccess] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(""); // "success" | "error"
+  const [success, setSuccess] = useState(false); // "success" | "error"
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSuccess(true);
-    setTimeout(() => setSuccess(false), 4000);
-    setFormData({ name: '', email: '', message: '' });
-    // Add API submission logic here if needed
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-    return (
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "a582f06f-73be-4c90-b026-ccfde08d6d72", // Get from Web3Forms
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setSubmitStatus("success");
+        setFormData({ name: "", phone: "", message: "" }); // Reset form
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus(""), 4000); // Reset status after 4s
+    }
+  };
+
+    return (<>
+
       <div className={darkMode ? "bg-gray-950 min-h-screen font-sans" : "bg-purple-900 min-h-screen font-sans"}>
         <Navbar />
   
@@ -613,7 +755,7 @@ const Port = () => {
                   </motion.a>
                   
                   <motion.a 
-                    href="https://linkedin.com/in/johndoe" 
+                    href="https://linkedin.com/in/mpirirwe-moses-989a72301/" 
                     className="flex items-center space-x-2 py-3 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -623,7 +765,7 @@ const Port = () => {
                   </motion.a>
                   
                   <motion.a 
-                    href="https://github.com/johndoe" 
+                    href="https://github.com/mpirirwemoses" 
                     className="flex items-center space-x-2 py-3 px-4 rounded-xl bg-gradient-to-r from-gray-700 to-gray-800 text-white hover:from-gray-800 hover:to-gray-900 transition-all duration-300 shadow-lg hover:shadow-xl"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -636,7 +778,8 @@ const Port = () => {
                 </motion.div>
 
                 {/* Download CV Button */}
-                <motion.button 
+                <motion.button  
+                onClick={handleDownload}
                   className="mt-6 rounded-full px-8 py-4 text-lg font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -717,7 +860,7 @@ const Port = () => {
                 transition={{ duration: 0.3 }}
               >
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                  <RotatingNumber finalNumber={5}/>+
+                  <RotatingNumber finalNumber={3}/>+
                 </h2>
                 <span className="text-lg text-gray-300">Years of Experience</span>
               </motion.div>
@@ -728,7 +871,7 @@ const Port = () => {
                 transition={{ duration: 0.3 }}
               >
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                  <RotatingNumber finalNumber={15}/>+
+                  <RotatingNumber finalNumber={4}/>+
                 </h2>
                 <span className="text-lg text-gray-300">Certifications</span>
               </motion.div>
@@ -954,223 +1097,17 @@ const Port = () => {
   <div className="max-w-6xl mx-auto px-4">
     <h2 className="text-center text-black text-3xl font-extrabold mb-6">My Skills</h2>
     <hr className="mb-10 mx-auto w-1/3 bg-gray-100"/>
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 lg:gap-8">
-      {/* React */}
-      <div className="skill-item text-center">
-        <div className="relative w-20 h-20 mx-auto">
-          <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 80 80">
-            <circle
-              cx="40"
-              cy="40"
-              r="36"
-              stroke="currentColor"
-              strokeWidth="8"
-              fill="transparent"
-              className="text-gray-300"
-            />
-            <motion.circle
-              cx="40"
-              cy="40"
-              r="36"
-              stroke="currentColor"
-              strokeWidth="8"
-              fill="transparent"
-              className="text-blue-500"
-              strokeLinecap="round"
-              initial={{ strokeDasharray: "0 226.2" }}
-              animate={{ strokeDasharray: "203.6 226.2" }}
-              transition={{ duration: 2, delay: 0.1 }}
-              style={{ strokeDasharray: "0 226.2" }}
-            />
-          </svg>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <img src={image65} alt="react" className="w-12 h-12 object-cover rounded-full"/>
-          </div>
-        </div>
-        <p className="mt-2 text-xl font-semibold text-white">React</p>
-        <p className="text-blue-400 font-bold">90%</p>
-      </div>
-
-      {/* JavaScript */}
-      <div className="skill-item text-center">
-        <div className="relative w-20 h-20 mx-auto">
-          <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 80 80">
-            <circle
-              cx="40"
-              cy="40"
-              r="36"
-              stroke="currentColor"
-              strokeWidth="8"
-              fill="transparent"
-              className="text-gray-300"
-            />
-            <motion.circle
-              cx="40"
-              cy="40"
-              r="36"
-              stroke="currentColor"
-              strokeWidth="8"
-              fill="transparent"
-              className="text-yellow-500"
-              strokeLinecap="round"
-              initial={{ strokeDasharray: "0 226.2" }}
-              animate={{ strokeDasharray: "214.9 226.2" }}
-              transition={{ duration: 2, delay: 0.2 }}
-              style={{ strokeDasharray: "0 226.2" }}
-            />
-          </svg>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <img src={image61} alt="javascript" className="w-12 h-12 object-cover rounded-full"/>
-          </div>
-        </div>
-        <p className="mt-2 text-xl font-semibold text-white">JavaScript</p>
-        <p className="text-yellow-400 font-bold">95%</p>
-      </div>
-
-      {/* Java */}
-      <div className="skill-item text-center">
-        <div className="relative w-20 h-20 mx-auto">
-          <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 80 80">
-            <circle
-              cx="40"
-              cy="40"
-              r="36"
-              stroke="currentColor"
-              strokeWidth="8"
-              fill="transparent"
-              className="text-gray-300"
-            />
-            <motion.circle
-              cx="40"
-              cy="40"
-              r="36"
-              stroke="currentColor"
-              strokeWidth="8"
-              fill="transparent"
-              className="text-orange-500"
-              strokeLinecap="round"
-              initial={{ strokeDasharray: "0 226.2" }}
-              animate={{ strokeDasharray: "192.3 226.2" }}
-              transition={{ duration: 2, delay: 0.3 }}
-              style={{ strokeDasharray: "0 226.2" }}
-            />
-          </svg>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <img src={image60} alt="java" className="w-12 h-12 object-cover rounded-full"/>
-          </div>
-        </div>
-        <p className="mt-2 text-xl font-semibold text-white">Java</p>
-        <p className="text-orange-400 font-bold">85%</p>
-      </div>
-
-      {/* Figma */}
-      <div className="skill-item text-center">
-        <div className="relative w-20 h-20 mx-auto">
-          <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 80 80">
-            <circle
-              cx="40"
-              cy="40"
-              r="36"
-              stroke="currentColor"
-              strokeWidth="8"
-              fill="transparent"
-              className="text-gray-300"
-            />
-            <motion.circle
-              cx="40"
-              cy="40"
-              r="36"
-              stroke="currentColor"
-              strokeWidth="8"
-              fill="transparent"
-              className="text-purple-500"
-              strokeLinecap="round"
-              initial={{ strokeDasharray: "0 226.2" }}
-              animate={{ strokeDasharray: "181.0 226.2" }}
-              transition={{ duration: 2, delay: 0.4 }}
-              style={{ strokeDasharray: "0 226.2" }}
-            />
-          </svg>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <img src={image62} alt="figma" className="w-12 h-12 object-cover rounded-full"/>
-          </div>
-        </div>
-        <p className="mt-2 text-xl font-semibold text-white">Figma</p>
-        <p className="text-purple-400 font-bold">80%</p>
-      </div>
-
-      {/* Git */}
-      <div className="skill-item text-center">
-        <div className="relative w-20 h-20 mx-auto">
-          <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 80 80">
-            <circle
-              cx="40"
-              cy="40"
-              r="36"
-              stroke="currentColor"
-              strokeWidth="8"
-              fill="transparent"
-              className="text-gray-300"
-            />
-            <motion.circle
-              cx="40"
-              cy="40"
-              r="36"
-              stroke="currentColor"
-              strokeWidth="8"
-              fill="transparent"
-              className="text-red-500"
-              strokeLinecap="round"
-              initial={{ strokeDasharray: "0 226.2" }}
-              animate={{ strokeDasharray: "214.9 226.2" }}
-              transition={{ duration: 2, delay: 0.5 }}
-              style={{ strokeDasharray: "0 226.2" }}
-            />
-          </svg>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <img src={image65} alt="git" className="w-12 h-12 object-cover rounded-full"/>
-          </div>
-        </div>
-        <p className="mt-2 text-xl font-semibold text-white">Git</p>
-        <p className="text-red-400 font-bold">95%</p>
-      </div>
-
-      {/* Node */}
-      <div className="skill-item text-center">
-        <div className="relative w-20 h-20 mx-auto">
-          <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 80 80">
-            <circle
-              cx="40"
-              cy="40"
-              r="36"
-              stroke="currentColor"
-              strokeWidth="8"
-              fill="transparent"
-              className="text-gray-300"
-            />
-            <motion.circle
-              cx="40"
-              cy="40"
-              r="36"
-              stroke="currentColor"
-              strokeWidth="8"
-              fill="transparent"
-              className="text-green-500"
-              strokeLinecap="round"
-              initial={{ strokeDasharray: "0 226.2" }}
-              animate={{ strokeDasharray: "203.6 226.2" }}
-              transition={{ duration: 2, delay: 0.6 }}
-              style={{ strokeDasharray: "0 226.2" }}
-            />
-          </svg>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <img src={image64} alt="node" className="w-12 h-12 object-cover rounded-full"/>
-          </div>
-        </div>
-        <p className="mt-2 text-xl font-semibold text-white">Node</p>
-        <p className="text-green-400 font-bold">90%</p>
-      </div>
-    </div>
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6 lg:gap-8">
+      
+       <SkillItem percentage={90} image={image62} name="React" />
+       <SkillItem percentage={80} image={image64} name="Node & Prisma" />
+       <SkillItem percentage={80} image={image60} name="Python" />
+       <SkillItem percentage={70} image={image65} name="React Native" />
+       <SkillItem percentage={80} image={image62} name="Figma" />
+       <SkillItem percentage={75} image={image61} name="JavaScript" />
+       <SkillItem percentage={80} image={image93} name="Django" />
+       <SkillItem percentage={84} image={image97} name="Git" />
+  </div>
   </div>
 </div>
 <section className= "mt-4 ">
@@ -1189,14 +1126,9 @@ const Port = () => {
           className="flex transition-transform  gap-8 duration-500"
           style={{ transform: `translateX(-${currentIndex * 300}px)` }}
         >
-<Card
-        image={image68}
-        title="Ahmed , Producer Mega Solutions "
-        description="This is a brief description of the project."
-        
-      />
+
       <Card
-        image={image56}
+        image={image96}
         title="Mr Peter, CEO infinite"
         description={`
           Working with Moses was an absolute pleasure. 
@@ -1211,64 +1143,43 @@ const Port = () => {
         
       />
       <Card
-        image={image56}
+        image={image96}
         title="Madam Rachael , Rise Children Africa"
         description={`
-          Working with Moses was an absolute pleasure. 
-          He developed a custom CRM system that not only streamlined our
-          operations but also helped us connect with our clients better. 
-          His attention to detail and clear communication ensured that our 
-          project was done on time and exceeded expectations. 
-          The software is live and functioning smoothly, and we couldn't be happier with the 
-          results. I highly recommend Moses for anyone seeking reliable, top-notch software development, 
-          and we will definitely be working with him again in the future.
+          Working with Moses was a great experience.
+He built a custom supply chain management system that made our operations more efficient and improved how we manage suppliers and logistics.
+Moses was clear, reliable, and delivered on time.
+The system is running smoothly, and we're very happy with the results.
+We highly recommend him and look forward to working with him again.
         `}
         
       />
       <Card
-        image={image56}
+        image={image96}
         title="Mr Michael , Fintech Ug"
         description={`
-          Working with Moses was an absolute pleasure. 
-          He developed a custom CRM system that not only streamlined our
-          operations but also helped us connect with our clients better. 
-          His attention to detail and clear communication ensured that our 
-          project was done on time and exceeded expectations. 
-          The software is live and functioning smoothly, and we couldn't be happier with the 
-          results. I highly recommend Moses for anyone seeking reliable, top-notch software development, 
-          and we will definitely be working with him again in the future.
+         Working with Moses was an absolute pleasure.
+He developed an AI-powered system that analyzes large datasets from multiple farms, providing actionable recommendations and accurate predictions.
+His attention to detail and clear communication ensured the project was delivered on time and exceeded our expectations.
+The software is live, running smoothly, and already making a real impact on our decision-making.
+I highly recommend Moses for anyone looking for smart, dependable software solutions—we’re excited to work with him again.
         `}
       />
       <Card
-        image={image56}
+        image={image96}
         title="Mr John Patrick from Asto Holdings"
         description={`
-          Working with Moses was an absolute pleasure. 
-          He developed a custom CRM system that not only streamlined our
-          operations but also helped us connect with our clients better. 
-          His attention to detail and clear communication ensured that our 
-          project was done on time and exceeded expectations. 
-          The software is live and functioning smoothly, and we couldn't be happier with the 
-          results. I highly recommend Moses for anyone seeking reliable, top-notch software development, 
-          and we will definitely be working with him again in the future.
+          Working with Moses was an absolute pleasure.
+He developed a custom Point of Sale (POS) system that greatly improved how we handle sales, inventory, and customer transactions.
+His attention to detail and clear communication ensured the project was delivered on time and exceeded our expectations.
+The system is live and running smoothly—we’re very happy with the results.
+I highly recommend Moses for anyone in need of reliable, high-quality software development, and we definitely plan to work with him again.
         `}
         
       />
-      <Card
-        image={image56}
-        title="Mrs.Augustine , Lead Pastor Church LLMs"
-        description={`
-          Working with Moses was an absolute pleasure. 
-          He developed a custom CRM system that not only streamlined our
-          operations but also helped us connect with our clients better. 
-          His attention to detail and clear communication ensured that our 
-          project was done on time and exceeded expectations. 
-          The software is live and functioning smoothly, and we couldn't be happier with the 
-          results. I highly recommend Moses for anyone seeking reliable, top-notch software development, 
-          and we will definitely be working with him again in the future.
-        `}
+     
         
-      />
+      
       </div>
       </div>
       <ChevronRight
@@ -1437,7 +1348,7 @@ const Port = () => {
               <p className="text-indigo-100 text-sm">Jan 2024 - Present</p>
             </div>
             <div className="p-6">
-              <p className="text-gray-700 mb-4">Studying core software engineering concepts at Makerere University, focusing on modern development practices.</p>
+              <p className="text-gray-700 mb-4">Studying core software engineering concepts at Makerere University, focusing on modern and real world  development practices.</p>
               <div className="flex flex-wrap gap-2">
                 <span className="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full">Software Engineering</span>
                 <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Computer Science</span>
@@ -1518,10 +1429,10 @@ const Port = () => {
                   </svg>
                 </div>
               </div>
-              <p className="text-pink-100 text-sm">Graduated Dec 2021</p>
+              <p className="text-pink-100 text-sm">Graduated May 2024</p>
             </div>
             <div className="p-6">
-              <p className="text-gray-700 mb-4">Achieved a strong foundation in science and mathematics, preparing for a career in technology.</p>
+              <p className="text-gray-700 mb-4">Achieved a strong foundation in science and mathematics, preparing for a career in technology and software Engineering.</p>
               <div className="flex flex-wrap gap-2">
                 <span className="text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded-full">Science</span>
                 <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">Mathematics</span>
@@ -1565,7 +1476,7 @@ const Port = () => {
   >
     {/* Email */}
     <motion.a 
-      href="mailto:your-email@example.com" 
+      href="mailto:mpirirwemoses2@gmail.com" 
       target="_blank" 
       rel="noopener noreferrer" 
       className="group bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-2xl p-6 border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300 flex flex-col items-center text-center"
@@ -1576,12 +1487,12 @@ const Port = () => {
         <Mail className="w-8 h-8 text-white" />
       </div>
       <h3 className="text-xl font-bold text-white mb-2">Email</h3>
-      <p className="text-blue-300 group-hover:text-blue-200 transition-colors">your-email@example.com</p>
+      <p className="text-blue-300 group-hover:text-blue-200 transition-colors">mpirirwemoses2@example.com</p>
     </motion.a>
 
     {/* WhatsApp */}
     <motion.a 
-      href="https://wa.me/your-number" 
+      href="https://wa.me/256758295130" 
       target="_blank" 
       rel="noopener noreferrer" 
       className="group bg-gradient-to-br from-green-600/20 to-emerald-600/20 rounded-2xl p-6 border border-green-500/30 hover:border-green-400/50 transition-all duration-300 flex flex-col items-center text-center"
@@ -1624,6 +1535,12 @@ const Port = () => {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
+        <input
+        type="hidden"
+        name="access_key"
+        value="a582f06f-73be-4c90-b026-ccfde08d6d72" // Same as above
+      />
+       
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <motion.div 
             className="relative"
@@ -1716,15 +1633,22 @@ const Port = () => {
   </motion.div>
 </section>
 
+    
        
 
       <footer className="bg-blue-600 text-white bg-gradient-to-r from-purple-900 via-blue-500 to-purple-900 py-4 mt-10">
         <div className="container mx-auto px-4 bold text-center">
-          <p>&copy; {new Date().getFullYear()} John Doe. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Moses Mpirirwe. All rights reserved.</p>
         </div>
       </footer>
-    </div>
+      </div>
+    
+    </>
+    
+    
   );
+  
+
 };
 
 export default Port;

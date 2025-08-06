@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import image96 from "../assets/images/2fc18006-aaf7-48a0-98ea-b313a0bd5a01.png"; 
+
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,7 +10,7 @@ const Navbar = () => {
     <header className="bg-gradient-to-r sticky top-0 from-purple-900 z-10 via-blue-500 to-purple text-white py-6">
       <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex gap-4 items-center">
-          <img className="rounded-full ml-2 h-[45px] w-[45px] object-cover" src='' alt="logo" />
+          <img className="rounded-full ml-2 h-[45px] w-[45px] object-cover" src={image96} alt="logo" />
           <h1 className="text-2xl font-bold">Moses M</h1>
         </div>
         {/* Hamburger for mobile */}

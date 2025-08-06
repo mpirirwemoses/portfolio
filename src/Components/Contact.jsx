@@ -11,57 +11,97 @@ function Contact() {
     email: "",
     message: "",
   });
-  const [success, setSuccess] = useState(false);
+  
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSuccess(true);
-    setTimeout(() => setSuccess(false), 4000);
-    // You can add API submission logic here
-  };
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(""); // "success" | "error"
+    const [success, setSuccess] = useState(false); // "success" | "error"
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    };
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      setIsSubmitting(true);
+  
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            access_key: "a582f06f-73be-4c90-b026-ccfde08d6d72", // Get from Web3Forms
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+          }),
+        });
+  
+        const data = await response.json();
+        if (data.success) {
+          setSubmitStatus("success");
+          setFormData({ name: "", phone: "", message: "" }); // Reset form
+          setSuccess(true);
+        } else {
+          setSubmitStatus("error");
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        setSubmitStatus("error");
+      } finally {
+        setIsSubmitting(false);
+        setTimeout(() => setSubmitStatus(""), 4000); // Reset status after 4s
+      }
+    };
 
   const contactMethods = [
     {
       label: "Email",
       icon: <Mail className="w-7 h-7 text-blue-600" />,
       color: "from-blue-100 to-blue-200",
-      value: "contact@example.com",
-      href: "mailto:contact@example.com",
+      value: "mpirirwemoses2@gmail.com",
+      href: "mailto:mpirirwemoses2@gmail.com",
     },
     {
       label: "Phone",
       icon: <Smartphone className="w-7 h-7 text-green-600" />,
       color: "from-green-100 to-green-200",
-      value: "+1 (234) 567-8900",
-      href: "tel:+1234567890",
+      value: "+(256) 758295130",
+      href: "tel:+256758595130",
     },
     {
       label: "WhatsApp",
       icon: <MessageCircle className="w-7 h-7 text-green-600" />,
       color: "from-green-100 to-green-200",
       value: "Message Us",
-      href: "https://wa.me/1234567890",
+      href: "https://wa.me/+256758295130",
     },
     {
       label: "LinkedIn",
       icon: <Linkedin className="w-7 h-7 text-blue-600" />,
       color: "from-blue-100 to-blue-200",
       value: "Connect with us",
-      href: "https://linkedin.com/company/yourcompany",
+      href: "https://linkedin.com/in/mpirirwe-moses-989a72301/",
     },
     {
       label: "Instagram",
       icon: <Instagram className="w-7 h-7 text-pink-500" />,
       color: "from-pink-100 to-pink-200",
       value: "Follow us",
-      href: "https://instagram.com/yourhandle",
+      href: "https://instagram.com/mortzy289/",
     },
     {
       label: "X (Twitter)",
       icon: <X className="w-7 h-7 text-gray-600" />,
       color: "from-gray-100 to-gray-200",
       value: "Follow us",
-      href: "https://x.com/yourhandle",
+      href: "https://x.com/MMpirirwe67599",
     },
   ];
 
@@ -115,6 +155,12 @@ function Contact() {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
+              <input
+        type="hidden"
+        name="access_key"
+        value="a582f06f-73be-4c90-b026-ccfde08d6d72" // Same as above
+      />
+             
               {/* Name Input */}
               <div className="relative">
                 <input

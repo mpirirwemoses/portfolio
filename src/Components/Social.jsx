@@ -3,29 +3,13 @@
 function SocialIcons({ handleCopy }) {
   return (
     <div className="flex justify-center flex-wrap gap-6">
-      {/* Facebook */}
-      <a
-        href="https://facebook.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:scale-110 transition-transform text-blue-600"
-      >
-        <i className="fab fa-facebook fa-3x"></i>
-      </a>
+     
 
-      {/* Twitter */}
-      <a
-        href="https://twitter.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:scale-110 transition-transform text-sky-500"
-      >
-        <i className="fab fa-twitter fa-3x"></i>
-      </a>
+     
 
       {/* X (Twitter) */}
       <a
-        href="https://x.com"
+        href="https://x.com/MMpirirwe67599"
         target="_blank"
         rel="noopener noreferrer"
         className="hover:scale-110 transition-transform text-black"
@@ -35,7 +19,7 @@ function SocialIcons({ handleCopy }) {
 
       {/* Instagram */}
       <a
-        href="https://instagram.com"
+        href="https://instagram.com/mortzy289/"
         target="_blank"
         rel="noopener noreferrer"
         className="hover:scale-110 transition-transform text-pink-500"
@@ -45,7 +29,7 @@ function SocialIcons({ handleCopy }) {
 
       {/* WhatsApp */}
       <a
-        href="https://wa.me/your-number"
+        href="https://wa.me/+256758295130"
         target="_blank"
         rel="noopener noreferrer"
         className="hover:scale-110 transition-transform text-green-500"
@@ -55,7 +39,7 @@ function SocialIcons({ handleCopy }) {
 
       {/* Email */}
       <a
-        href="mailto:your-email@example.com"
+        href="mpirirwemoses2@gmail.com"
         className="hover:scale-110 transition-transform text-blue-500"
       >
         <i className="fas fa-envelope fa-3x"></i>
@@ -63,12 +47,12 @@ function SocialIcons({ handleCopy }) {
 
       {/* Phone */}
       <a
-        href="tel:+256909845377"
+        href="tel:+256758295130"
         onClick={handleCopy}
         className="hover:scale-110 transition-transform flex items-center gap-3 text-green-800"
       >
         <i className="fas fa-phone fa-2x"></i>
-        <span className="text-lg">+256909845377</span>
+        <span className="text-lg">+256758295130</span>
       </a>
     </div>
   );
