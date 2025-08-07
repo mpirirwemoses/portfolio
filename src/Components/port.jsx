@@ -64,7 +64,7 @@ import image95 from "../assets/images/icons8-react-native-96.png";
 import image96 from "../assets/images/icons8-person-96.png";
 import image97 from "../assets/images/icons8-git-128.png";
 import image98 from "../assets/images/ChatGPT Image Aug 5, 2025, 09_17_23 AM.png"; // Removed duplicate
-
+import image110 from "../assets/images/pexels-rdne-7563680.jpg"; // New image for Professional Dating project
 
 // ...existing code...
 
@@ -176,7 +176,7 @@ const Port = () => {
         description: "A step-by-step guide to building a modern portfolio using React and Tailwind CSS.",
         url: "https://yourblog.com/portfolio-guide",
         type: "Article",
-        image: image63,
+        image: image110,
       },
       {
         id: 2,
@@ -184,7 +184,7 @@ const Port = () => {
         description: "Essential UI/UX principles every developer should know.",
         url: "https://yourblog.com/uiux-tips",
         type: "Article",
-        image: image62,
+        image: image110,
       },
      
     ];
@@ -364,29 +364,43 @@ const getProjectScreenshots = (project) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="relative flex flex-col items-center bg-purple-900 rounded-xl shadow-lg p-8 overflow-hidden hover:shadow-[0_0_20px_5px_rgba(128,0,255,0.8)] transition-shadow duration-300"
+        className="relative flex flex-col items-center bg-purple-900 rounded-xl shadow-lg overflow-hidden hover:shadow-[0_0_20px_5px_rgba(128,0,255,0.8)] transition-shadow duration-300"
       >
-        <img 
-          src={content.image} 
-          alt={content.title} 
-          className="w-20 h-20 rounded-full mb-4 object-cover" 
-        />
-        <h2 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-400 to-red-400 drop-shadow-lg font-[Poppins] mb-2">
-          {content.title}
-        </h2>
-        <p className="text-white text-lg mb-2 text-center">{content.description}</p>
-        <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold mb-2">
-          {content.type}
-        </span>
-        <div className="flex gap-4 flex-wrap justify-center">
-          <a 
-            href={content.url} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full text-white font-bold hover:scale-105 transition"
-          >
-            View
-          </a>
+        {/* Full-width image container */}
+        <div className="w-full h-48 relative overflow-hidden">
+          <img
+            src={content.image  || defaultProjectImage}
+            alt={content.title}
+            className="w-full h-full object-cover absolute inset-0"
+            onError={(e) => {
+              e.target.src = defaultProjectImage;
+            }}
+          />
+          {/* Project name overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-purple-900/90 to-transparent flex items-end p-4">
+            <h2 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-400 to-red-400 drop-shadow-lg font-[Poppins]">
+              {content.title}
+            </h2>
+          </div>
+        </div>
+        
+        <div className="p-6 w-full">
+          <p className="text-white/90 text-lg font-medium mb-6 text-center font-[Inter] leading-relaxed tracking-wide transition-all duration-300 hover:text-white hover:scale-[1.01]">
+  {content.description || (
+    <span className="opacity-70 italic">No description available</span>
+  )}
+</p>
+          
+          <div className="flex gap-4 mt-4 flex-wrap justify-center">
+            <button
+            
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full text-white font-bold hover:scale-105 transition"
+            >
+              View
+            </button>
+         
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -396,6 +410,7 @@ const getProjectScreenshots = (project) => {
             <ImageIcon className="w-4 h-4" />
             Screenshots
           </motion.button>
+        </div>
         </div>
       </motion.div>
     ))}
@@ -676,7 +691,9 @@ const getProjectScreenshots = (project) => {
       const data = await response.json();
       if (data.success) {
         setSubmitStatus("success");
-        setFormData({ name: "", phone: "", message: "" }); // Reset form
+        setFormData({ name: "", phone: "", message: "" });
+         // Reset form
+         setSuccess(true);
       } else {
         setSubmitStatus("error");
       }
@@ -1338,7 +1355,7 @@ I highly recommend Moses for anyone in need of reliable, high-quality software d
           >
             <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
               <div className="flex items-center justify-between mb-2">
-                <h4 className="text-xl font-bold">Bachelor of Software Engineering</h4>
+                <h4 className="text-xl font-bold">Graduated with Bachelor of Software Engineering</h4>
                 <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838l-2.727 1.17 1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
@@ -1348,7 +1365,7 @@ I highly recommend Moses for anyone in need of reliable, high-quality software d
               <p className="text-indigo-100 text-sm">Jan 2024 - Present</p>
             </div>
             <div className="p-6">
-              <p className="text-gray-700 mb-4">Studying core software engineering concepts at Makerere University, focusing on modern and real world  development practices.</p>
+              <p className="text-gray-700 mb-4">Implementing core software engineering concepts at Makerere University, focusing on modern and real world  development practices.</p>
               <div className="flex flex-wrap gap-2">
                 <span className="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full">Software Engineering</span>
                 <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Computer Science</span>
@@ -1373,7 +1390,7 @@ I highly recommend Moses for anyone in need of reliable, high-quality software d
                   </svg>
                 </div>
               </div>
-              <p className="text-teal-100 text-sm">Jun 2023 - Sep 2023</p>
+              <p className="text-teal-100 text-sm">Jan 2023 - Sep 2023</p>
             </div>
             <div className="p-6">
               <p className="text-gray-700 mb-4">Mastered building React applications and REST APIs, gaining expertise in modern web development stack.</p>
@@ -1429,7 +1446,7 @@ I highly recommend Moses for anyone in need of reliable, high-quality software d
                   </svg>
                 </div>
               </div>
-              <p className="text-pink-100 text-sm">Graduated May 2024</p>
+              <p className="text-pink-100 text-sm">Graduated May 2021</p>
             </div>
             <div className="p-6">
               <p className="text-gray-700 mb-4">Achieved a strong foundation in science and mathematics, preparing for a career in technology and software Engineering.</p>
