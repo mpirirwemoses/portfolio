@@ -52,7 +52,7 @@ import image62 from "../assets/images/icons8-figma-96.png";
 import image63 from "../assets/images/icons8-content-100.png";
 import image64 from "../assets/images/icons8-node-js-144.png";
 import image65 from "../assets/images/icons8-react-native-256.png";
-import image66 from "../assets/DALL·E 2025-02-01 10.15.49 - d-DS1fRWHW.webp";
+import image66 from "../dist/assets/DALL·E 2025-02-01 10.15.49 - d-DS1fRWHW.webp";
 import image67 from "../assets/images/developer_setup_grayscale.png";
 import image68 from "../assets/images/pexels-sora-shimazaki-5935794.jpg";
 import image90 from "../assets/images/ChatGPT Image Aug 4, 2025, 07_49_45 PM.png";
