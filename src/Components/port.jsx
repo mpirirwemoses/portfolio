@@ -99,7 +99,7 @@ const Port = () => {
       const handleDownload = () => {
   // Assuming moses.pdf is in your public folder
   const link = document.createElement('a');
-  link.href = '/MosesMpirirwe_Resume.pdf';
+  link.href = '/MosesMpirirwe_Resume1.pdf';
   link.download = 'MosesMpirirwe_CV.pdf'; // This will be the filename when downloaded
   document.body.appendChild(link);
   link.click();
