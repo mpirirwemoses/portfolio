@@ -59,8 +59,7 @@ import image90 from "../assets/images/ChatGPT Image Aug 4, 2025, 07_49_45 PM.png
 import image91 from "../assets/images/ChatGPT Image Aug 6, 2025, 09_25_54 AM.png";
 import image92 from "../assets/images/pexels-ketut-subiyanto-4353618.jpg";
 import image93 from "../assets/images/icons8-django-100.png";
- import image99 from "../assets/images/icons8-docker-96.png"; // Removed duplicate
-import image95 from "../assets/images/icons8-react-native-96.png";
+ 
 import image96 from "../assets/images/icons8-person-96.png";
 import image97 from "../assets/images/icons8-git-128.png";
 import image98 from "../assets/images/ChatGPT Image Aug 5, 2025, 09_17_23 AM.png"; // Removed duplicate
